@@ -1,0 +1,18 @@
+# hadi la maniére pour configurer le Gateway d'une maniere statique w mn l2ahssan ndiroha f un
+# fichier .yml w machi .properties hit hna sahla w bayna ama f properties compliquée chwia
+# aw ndiroha b une methode Bean
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: r1
+#         uri: http://localhost:8081/
+# hna avant de créé discovery-service on met localhost aprés la création on met nom du microservice en Majuscule
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            Path=/customers/**
+        - id: r2
+#         uri: http://localhost:8082/
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            Path=/products/**
